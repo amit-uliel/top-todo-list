@@ -6,7 +6,42 @@
     <title>TOP Todo List</title>
 </head>
 <body>
+    <form action="./index.js" method="post" class="projectForm">
+        <label for="name">Project Name</label>
+        <input type="text" name="name" id="name">
+
+        <button type="submit" class="createProjectBtn">Create Project</button>
+    </form>
+
+    <form action="./index.js" method="post" class="todoForm">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
     
-    <script type="module" src="./main.js"></script>
+        <label for="description">Description</label>
+        <input type="text">
+
+        <label for="dueDate">Due Date</label>
+        <input type="date" name="dueDate" id="dueDate">
+
+        <label for="notes">Notes</label>
+        <input type="text" name="notes" id="notes">
+
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button type="submit" class="createTodoBtn">Add Todo to Project</button>
+    </form>
+
+    <div class="projects-tabs">
+
+    </div>
+
+    <div class="project">
+
+    </div>
 </body>
 </html>
