@@ -9,27 +9,11 @@ export class Todo {
         this.notes = notes;
     }
 
-    // edit title
-    editTitle(newTitle) {
-        if (!newTitle?.trim()) return;
-        this.title = newTitle;
-    }
-
-    // edit description
-    editDescription(newDescription) {
-        if (!newDescription?.trim()) return;
-        this.description = newDescription;
-    }
-
-    // edit priority
-    editPriority(newPriority) {
-        if (!newPriority?.trim()) return;
-        this.priority = newPriority;
-    }
-
-    // edit notes
-    editNotes(newNotes) {
-        if (!newNotes?.trim()) return;
-        this.notes = newNotes;
+    update({ title, description, dueDate, priority, notes }) {
+        if (title?.trim()) this.title = title;
+        if (description?.trim()) this.description = description;
+        if (dueDate) this.dueDate = dueDate;
+        if (priority) this.priority = priority;
+        if (notes?.trim()) this.notes = notes;
     }
 }

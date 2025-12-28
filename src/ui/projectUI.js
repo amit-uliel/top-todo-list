@@ -2,11 +2,11 @@ import { clearContainer, createEl } from "../../utils/dom";
 import { renderTodo } from "./todoUI";
 
 // render a project (todo list)
-export function renderProject(project, projectContainer) {
+export function renderProject(project, projectContainer, handlers) {
     clearContainer(projectContainer);
 
     project.todos.forEach(todo => {
-        const todoDiv = renderTodo(todo, projectContainer, project, renderProject);
+        const todoDiv = renderTodo(todo, projectContainer, project, renderProject, handlers);
         projectContainer.append(todoDiv);
     });
 }

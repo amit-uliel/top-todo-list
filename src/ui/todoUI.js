@@ -6,9 +6,10 @@ import { createEl } from "../../utils/dom";
  * @param {Project} project
  * @returns todo div
  */
-export function renderTodo(todo, projectContainer, project, renderProject) {
+export function renderTodo(todo, projectContainer, project, renderProject, { onRemove, onEdit }) {
     // todo container
     const todoDiv = createEl('div');
+    todoDiv.classList.add('todo-container');
     
     // title
     const todoH2 = createEl('h2');
@@ -29,33 +30,45 @@ export function renderTodo(todo, projectContainer, project, renderProject) {
         detailsDiv.classList.toggle('hidden');
     });
 
+    // remove button
     const removeBtn = createEl('button');
     removeBtn.textContent = "Remove";
     removeBtn.dataset.id = todo.id;
 
+    // add event listener to remove button
     removeBtn.addEventListener('click', () => {
-        const todoId = Number(removeBtn.dataset.id);
-        project.remove(todoId);
-        renderProject(project, projectContainer);
+        onRemove(todo.id);
     });
 
     // details container
     const detailsDiv = createEl('div');
     detailsDiv.classList.add('hidden');
 
-    // description paragraph
+    // description
     const descriptionP = createEl('p');
     descriptionP.textContent = todo.description;
 
+    // priority
     const prioritySpan = createEl('span');
     prioritySpan.textContent = `Priority: ${todo.priority}`;
 
+    // notes
     const notesP = createEl('p');
     notesP.textContent = todo.notes;
 
+    // edit button
+    const editBtn = createEl('button');
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('editBtn');
+
+    // add event listener to edit button
+    editBtn.addEventListener('click', () => {
+        onEdit(todo);
+    });
+
     // appends
     detailsDiv.append(descriptionP, prioritySpan, notesP);
-    todoDiv.append(todoH2, todoDueDate, expandBtn, detailsDiv, removeBtn);
+    todoDiv.append(todoH2, todoDueDate, expandBtn, detailsDiv, removeBtn, editBtn);
 
     return todoDiv;
 }
